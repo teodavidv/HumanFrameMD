@@ -33,6 +33,13 @@
     max-height: 60px;
     width: auto;
 }
+.header_area .logo img,
+#fkt-image-af0-ebc-910 {
+    width: auto;
+    height: auto;
+    max-height: 80px;
+    object-fit: contain;
+}
 
 /* Ensure videos are responsive */
 video {
