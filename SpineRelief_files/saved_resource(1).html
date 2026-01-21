@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<!-- saved from url=(0116)https://smoothspine.com/web-pixels@fcfee988w5aeb613cpc8e4bc33m6693e112/custom/web-pixel-136970576@10/sandbox/modern/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>SmoothSpine</title>
+    <script async="" src="./nbpixel.js"></script><script src="./375189926842650" async=""></script><script async="" src="./fbevents.js"></script><script type="text/javascript" async="" src="./mgsensor.js"></script><script type="text/javascript" async="" src="./as"></script><script async="" src="./pixel.js"></script><script async="" src="./loader.iife.js"></script><script async="" src="./pixel(1).js"></script><script async="" src="./d3ejdxrxdrou.js"></script><script src="./sfcfee988w5aeb613cpc8e4bc33m6693e112m.js"></script>
+
+    <script type="text/javascript">
+  (function(shopify) {shopify.extend('WebPixel::Render', function(api) {
+var analytics=api.analytics,browser=api.browser,init=api.init;
+(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s);j.async=true;j.src="https://s.smoothspine.com/d3ejdxrxdrou.js?"+i;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','ehml726s=aWQ9R1RNLTVYUDJGVk40&sort=desc');
+  
+var AXON_EVENT_KEY = '8dfaa9f9-56f2-4e18-939a-4e7ffa25b59d';
+    (function(w, d) {
+      var u = 'https://s.axon.ai/s/pixel.js';
+      if (w.axon_s) return;
+      var s = w.axon_s = function() {
+        s.performOperation ? s.performOperation.apply(s, arguments) : s.operationQueue.push(arguments)
+      };
+      s.operationQueue = [];
+      s.ts = Date.now();
+      s.eventKey = AXON_EVENT_KEY;
+      var f = d.getElementsByTagName('script')[0],
+        e = d.createElement('script');
+      e.async = !0;
+      e.src = u;
+      f.parentNode.insertBefore(e, f)
+    })(window, document);
+    axon_s('init');
+    analytics.subscribe('all_events', async e => axon_s('track', e, init));
+   const event_prefix = '';
+  const formattedItemId = true;
+  const gclidWithPageLocation = true;
+  
+  let storeCountryCode = window.localStorage.getItem('shopCountryCode');
+  storeCountryCode = storeCountryCode || 'US';
+  window.dataLayer = window.dataLayer || [];
+  function gtag() {
+    dataLayer.push(arguments);
+  }
+  //checkout pages event
+  if (/.+\/checkouts?\/.*/.test(window.location.href)) {
+    // tag manager
+    
+    analytics.subscribe('page_viewed', (event) => {
+      const eventData = {
+        event: event_prefix + 'page_view',
+        page_location: getPageLocation(event),
+      }
+      window.dataLayer.push(eventData);
+      eventLog('page_view', eventData);
+    });
+    // end tag manager
+    // DataLayer Events
+    analytics.subscribe('payment_info_submitted', (event) => ecommerceDataLayer('add_payment_info', event));
+    analytics.subscribe('checkout_shipping_info_submitted', (event) => ecommerceDataLayer('add_shipping_info', event));
+    analytics.subscribe('checkout_completed', (event) => ecommerceDataLayer('purchase', event));
+analytics.subscribe('checkout_started', (event) => ecommerceDataLayer('begin_checkout', event));
+    
+  }
+  function eventLog(eventName, eventData) {
+    const css1 = 'background: red; color: #fff; font-size: normal; border-radius: 3px 0 0 3px; padding: 3px 4px;';
+    const css2 = 'background-color: blue; color: #fff; font-size: normal; border-radius: 0 3px 3px 0; padding: 3px 4px;';
+    console.log('%cGTM DataLayer Event:%c' + event_prefix + eventName, css1, css2, eventData);
+  }
+  function getPageLocation(event) {
+    let pageLocation = event.context.document.location.href;
+    if (gclidWithPageLocation) {
+      const name = '_gcl_aw';
+      const value = `; ${document.cookie}`;
+      const parts = value.split(`; ${name}=`);
+      if (parts.length === 2) {
+        const gclidCookie = parts.pop().split(';').shift();
+        const gclidParts = gclidCookie.split('.');
+        const gclid = gclidParts[gclidParts.length - 1];
+        pageLocation = pageLocation.includes('?') ? `${pageLocation}&gclid=${gclid}` : `${pageLocation}?gclid=${gclid}`;
+      }
+    }
+    return pageLocation;
+  }
+  async function sha256Hash(value) {
+    const encoder = new TextEncoder();
+    const data = encoder.encode(value);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    const hashedValue = hashArray.map(byte => ('00' + byte.toString(16)).slice(-2)).join('');
+    return hashedValue;
+  }
+  async function ecommerceDataLayer(gtm_event_name, event) {
+    let hash_email;
+    let hash_phone;
+    const phone = event.data?.checkout?.phone;
+    const email = event.data?.checkout?.email;
+    if (phone) {
+      hash_phone = await sha256Hash(phone);
+    }
+    if (email) {
+      hash_email = await sha256Hash(email);
+    }
+    const customerInfo = {
+      customer: {
+        first_name: event.data?.checkout?.billingAddress?.firstName || event.data?.checkout?.shippingAddress?.firstName,
+        last_name: event.data?.checkout?.billingAddress?.lastName || event.data?.checkout?.shippingAddress?.lastName,
+        email: email,
+        hash_email: hash_email,
+        phone: phone,
+        hash_phone: hash_phone,
+        address: event.data?.checkout?.shippingAddress
+      }
+    }
+    dataLayer.push(customerInfo);
+    const dataLayerInfo = {
+      event: event_prefix + gtm_event_name,
+      page_location: getPageLocation(event),
+      ecommerce: {
+        transaction_id: event.data?.checkout?.order?.id,
+        value: event.data?.checkout?.totalPrice?.amount,
+        tax: event.data?.checkout?.totalTax?.amount,
+        shipping: event.data?.checkout?.shippingLine?.price?.amount,
+        currency: event.data?.checkout?.currencyCode,
+        coupon: (event.data?.checkout?.discountApplications || []).map(discount => discount.title).join(','),
+        items: (event.data?.checkout?.lineItems || []).map(item => ({
+          item_id: formattedItemId ? 'shopify_' + storeCountryCode + '_' + (item.variant?.product?.id || '') + '_' + (item.variant?.id || '') : item.variant?.product?.id,
+          product_id: item.variant?.product?.id,
+          variant_id: item.variant?.id,
+          sku: item.variant?.sku,
+          item_name: item.title,
+          coupon: item.discountAllocations?.discountApplication?.title,
+          discount: item.discountAllocations?.amount?.amount,
+          item_variant: item.variant?.title,
+          price: item.variant?.price?.amount,
+          quantity: item.quantity,
+          item_brand: item.variant?.product?.vendor,
+          item_category: item.variant?.product?.type
+        }))
+      }
+    }
+    dataLayer.push({
+      ecommerce: null
+    });
+    dataLayer.push(dataLayerInfo);
+    eventLog(gtm_event_name, Object.assign({},dataLayerInfo, customerInfo));
+  }
+});})(self.webPixelsManager.createShopifyExtend('136970576', 'custom'));
+
+</script>
+
+  <script defer="" src="./bs.c9e1074f5b3f9fc8ea15d152add07294-1.iife.js"></script><script defer="" src="./hs.iife.js"></script></head>
+  <body>
+
+<script type="text/javascript" id="" charset="">var AXON_EVENT_KEY="2176abab-59ab-447b-8240-bdb5f974ec26";
+!function(b,e){var f=["https://s.axon.ai/pixel.js","https://c.albss.com/p/l/loader.iife.js"];if(!b.axon){var a=b.axon=function(){a.performOperation?a.performOperation.apply(a,arguments):a.operationQueue.push(arguments)};a.operationQueue=[];a.ts=Date.now();a.eventKey=AXON_EVENT_KEY;b=e.getElementsByTagName("script")[0];for(var c=0;c<f.length;c++){var d=e.createElement("script");d.async=!0;d.src=f[c];b.parentNode.insertBefore(d,b)}}}(window,document);axon("init");</script>
+<script type="text/javascript" id="" charset="">!function(b,e,f,g,a,c,d){b.fbq||(a=b.fbq=function(){a.callMethod?a.callMethod.apply(a,arguments):a.queue.push(arguments)},b._fbq||(b._fbq=a),a.push=a,a.loaded=!0,a.version="2.0",a.queue=[],c=e.createElement(f),c.async=!0,c.src=g,d=e.getElementsByTagName(f)[0],d.parentNode.insertBefore(c,d))}(window,document,"script","https://connect.facebook.net/en_US/fbevents.js");fbq("init","375189926842650");</script>
+
+<script type="text/javascript" id="" charset="">!function(c,d,e,f,a,b,g){c[f]||((a=c[f]=function(){a.process?a.process.apply(a,arguments):a.queue.push(arguments)}).queue=[],a.t=+new Date,(b=d.createElement(e)).async=1,b.src="https://static.newsbreak.com/business/tracking/nbpixel.js?t\x3d"+864E5*Math.ceil(new Date/864E5),(g=d.getElementsByTagName(e)[0]).parentNode.insertBefore(b,g))}(window,document,"script","nbpix");nbpix("init","ID-1963229365139505154");nbpix("event","view_content");</script>
+
+<script type="text/javascript" id="" charset="">!function(c,d,e,f,a,b,g){c[f]||((a=c[f]=function(){a.process?a.process.apply(a,arguments):a.queue.push(arguments)}).queue=[],a.t=+new Date,(b=d.createElement(e)).async=1,b.src="https://static.newsbreak.com/business/tracking/nbpixel.js?t\x3d"+864E5*Math.ceil(new Date/864E5),(g=d.getElementsByTagName(e)[0]).parentNode.insertBefore(b,g))}(window,document,"script","nbpix");nbpix("init","ID-1963229365139505154");nbpix("event","pageload");</script>
+<script type="text/javascript" id="" charset="">axon("track","page_view");</script>
+<script type="text/javascript" id="" charset="">(function(){var a=location.search.match(/[?&]rc_uuid=([^&]+)/);a&&a[1]&&sessionStorage.setItem("rc_uuid",decodeURIComponent(a[1]))})();</script>
+<iframe id="nbu-iframe" src="./sync-nbu.html" style="display: none;"></iframe></body></html>
