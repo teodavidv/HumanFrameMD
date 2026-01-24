@@ -5,37 +5,7 @@
     <title>SmoothSpine</title>
     <script src="./sfcfee988w5aeb613cpc8e4bc33m6693e112m.js"></script>
 
-    <script type="text/javascript">
-  (function(shopify) {shopify.extend('WebPixel::Render', function(api) {
-var analytics=api.analytics,browser=api.browser,init=api.init;
-window.analytics = analytics;
-window.initContext = init;
-fetch('https://sp.stapecdn.com/widget/script_pixel?shop_id=25212616781')
-  .then(response => {
-      if (!response.ok) {
-          throw new Error('Network response was not ok');
-      }
-      return response.text();
-  })
-  .then(scriptText => {
-      const scriptElement = document.createElement('script');
-      scriptElement.textContent = scriptText;
-      document.head.appendChild(scriptElement);
-  })
-  .catch(error => {
-      console.error('There was a problem fetching the script:', error);
-  });
-// Step 1. Initialize the JavaScript pixel SDK (make sure to exclude HTML)
-
-
-// Step 2. Subscribe to customer events with analytics.subscribe(), and add tracking
-//  analytics.subscribe("all_standard_events", function (event) {
-//    console.log("Event data ", event?.data);
-//  });
-
-});})(self.webPixelsManager.createShopifyExtend('212173136', 'custom'));
-
-</script>
+    
 
   <script>const GTM_ID = '5XP2FVN4'; //from settings tag
 const GTM_URL = 'https://s.smoothspine.com'; //from settings tag
