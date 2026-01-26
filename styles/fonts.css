@@ -1,0 +1,67 @@
+/* Local font declarations - replacing CDN URLs with local paths */
+
+/* Libre Franklin Bold */
+@font-face {
+  font-family: 'Libre Franklin';
+  font-weight: 700;
+  font-style: normal;
+  src: url('../assets/fonts/librefranklin_n7.woff2') format('woff2'),
+       url('../assets/fonts/librefranklin_n7.woff') format('woff');
+}
+
+/* Libre Franklin Regular */
+@font-face {
+  font-family: 'Libre Franklin';
+  font-weight: 400;
+  font-style: normal;
+  src: url('../assets/fonts/librefranklin_n4.woff2') format('woff2'),
+       url('../assets/fonts/librefranklin_n4.woff') format('woff');
+}
+
+/* Libre Franklin Italic */
+@font-face {
+  font-family: 'Libre Franklin';
+  font-weight: 400;
+  font-style: italic;
+  src: url('../assets/fonts/librefranklin_i4.woff2') format('woff2'),
+       url('../assets/fonts/librefranklin_i4.woff') format('woff');
+}
+
+/* Libre Franklin Bold Italic */
+@font-face {
+  font-family: 'Libre Franklin';
+  font-weight: 700;
+  font-style: italic;
+  src: url('../assets/fonts/librefranklin_i7.woff2') format('woff2'),
+       url('../assets/fonts/librefranklin_i7.woff') format('woff');
+}
+
+/* Libre Franklin Black */
+@font-face {
+  font-family: 'Libre Franklin';
+  font-weight: 900;
+  font-style: normal;
+  src: url('../assets/fonts/librefranklin_n9.woff2') format('woff2'),
+       url('../assets/fonts/librefranklin_n9.woff') format('woff');
+}
+
+/* Open Sans Regular */
+@font-face {
+  font-family: 'Open Sans';
+  font-weight: 400;
+  font-style: normal;
+  src: url('../assets/fonts/opensans_n4.woff2') format('woff2'),
+       url('../assets/fonts/opensans_n4.woff') format('woff');
+}
+
+/* Icon Font */
+@font-face {
+  font-family: 'icons';
+  src: url('../assets/fonts/icons.eot');
+  src: url('../assets/fonts/icons.eot?#iefix') format('embedded-opentype'),
+       url('../assets/fonts/icons.woff') format('woff'),
+       url('../assets/fonts/icons.ttf') format('truetype'),
+       url('../assets/fonts/icons.svg#timber-icons') format('svg');
+  font-weight: 400;
+  font-style: normal;
+}
