@@ -9,7 +9,7 @@
  * - Stores parameters in sessionStorage for persistence across page loads
  * - Appends parameters to all internal links and checkout links
  * - Handles dynamically added links via MutationObserver
- * - Works across both buyspinerelief.com and checkout.buyspinerelief.com
+ * - Works across both humanframemd.com and checkout.humanframemd.com
  * 
  * Common parameters preserved:
  * - UTM parameters (utm_source, utm_medium, utm_campaign, utm_content, utm_term)
@@ -26,9 +26,9 @@
   var CONFIG = {
     // Domains that should receive parameters
     allowedDomains: [
-      'buyspinerelief.com',
-      'checkout.buyspinerelief.com',
-      'www.buyspinerelief.com'
+      'humanframemd.com',
+      'checkout.humanframemd.com',
+      'www.humanframemd.com'
     ],
     // Storage key for persisting parameters
     storageKey: 'spinerelief_url_params',
