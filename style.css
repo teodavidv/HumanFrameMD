@@ -1,0 +1,597 @@
+body{
+	font-family: Montserrat, Sans-serif;
+}
+
+/* Topbar look */
+.sr-topbar{
+  background:#6aa9e8; /* match your screenshot */
+  color:#fff;
+  font-weight:700;
+  font-size:14px;
+}
+
+/* Marquee wrapper */
+.sr-marquee{
+  overflow:hidden;
+  white-space:nowrap;
+}
+
+/* Track moves */
+.sr-marquee-track{
+  display:flex;
+  width:max-content;
+  animation: sr-marquee 60s linear infinite;
+}
+
+/* Pause on hover */
+.sr-marquee:hover .sr-marquee-track{
+  animation-play-state: paused;
+}
+
+/* Group: a row of items */
+.sr-marquee-group{
+  display:flex;
+  align-items:center;
+  gap:34px;
+  padding-inline: 24px;
+}
+
+/* Each item */
+.sr-pill{
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: #fff;
+    text-decoration: none;
+    letter-spacing: .02em;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 18px;
+}
+.sr-pill:hover{ opacity:.9; }
+
+/* Icon */
+.sr-ico{
+  width:18px;
+  height:18px;
+  object-fit:contain;
+  flex:0 0 auto;
+}
+
+/* Animation */
+@keyframes sr-marquee{
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); } /* because we duplicated the group */
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce){
+  .sr-marquee-track{ animation:none; }
+}
+
+
+.navbar .nav-link{
+    letter-spacing: .02em;
+    color: #67a7fa;
+    font-weight: 400;
+    text-transform: uppercase;
+    font-size: 14px;
+}
+.navbar .nav-link:hover{
+  opacity:.85;
+}
+
+.support-bar{
+  background:#67a7fa; /* match screenshot */
+  color:#fff;
+}
+
+.support-bar h2{
+  font-size:1.4rem;
+  letter-spacing:.04em;
+}
+
+.support-link{
+    text-decoration: none;
+    font-size: 24px;
+    text-transform: uppercase;
+    color: #fff;
+    font-weight: bolder;
+}
+.mailto a.support-link{
+	    text-decoration: none;
+    font-size: 20px;
+    text-transform: lowercase;
+    color: #fff;
+    font-weight: 600;
+}
+.support-link:hover{
+  text-decoration:none;
+}
+
+
+.sr-hero{
+	min-height: 570px;
+    color: #fff;
+    position: relative;
+  background: url("assets/images/spine_background.png") center/cover no-repeat;
+}
+
+/* blue overlay */
+.sr-hero::before{
+content: "";
+    position: absolute;
+    inset: 0;
+    background: #67a7fa;
+    opacity: .71;
+}
+
+.sr-hero .container{
+  position:relative;
+  z-index:1;
+}
+
+.sr-kicker{
+    text-align: center;
+     font-family: "Rubik", sans-serif;
+    font-size: 18px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: #fff;
+}
+
+.sr-hero-title{
+    line-height: 1.05;
+    letter-spacing: .02em;
+    font-family: Montserrat, Sans-serif;
+    font-size: 50px;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: #fff;
+}
+
+.sr-hero-sub{
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+    font-family: Montserrat, Sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+/* arrow */
+.sr-down-arrow{
+display: inline-flex;
+    width: 1em;
+    height: 1em;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    text-decoration: none;
+    font-size: 4rem;
+}
+
+/* bounce on page load */
+.sr-down-arrow{
+  animation: sr-bounce 1.6s infinite;
+}
+
+@keyframes sr-bounce{
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(10px); }
+  60% { transform: translateY(6px); }
+}
+
+/* accessibility */
+@media (prefers-reduced-motion: reduce){
+  .sr-down-arrow{ animation:none; }
+}
+.bg-light{
+	background-color: #eee !important;
+}
+.review-content{
+	border-radius: 25px 25px 25px 25px;
+    padding-top: 3em;
+    padding-bottom: 3em;
+    padding-left: 3em;
+    padding-right: 3em;
+	    background-color: #fff;
+}
+.review-content h2{
+    font-size: 35px;
+    font-weight: 700;
+    text-transform: capitalize;
+    line-height: 1.2em;
+    letter-spacing: -.05em;
+    color: #4D4D4D;
+}
+.sr-divider{
+    width: 150px;
+    height: 1px;
+    background: #3b82f6;
+    margin-top: 40px;
+}
+
+.review-card{
+background:#fff;
+border:1px solid #e5e7eb;
+border-radius:12px;
+padding:24px;
+box-shadow:0 2px 12px rgba(0,0,0,.08);
+}
+
+.review-avatar{
+width:48px;height:48px;min-width:48px;
+border-radius:50%;
+display:flex;align-items:center;justify-content:center;
+color:#fff;font-weight:600;font-size:18px;
+background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.review-name{font-weight:600;color:#1f2937;}
+.review-date{font-size:13px;color:#6b7280;}
+
+.review-stars{
+color:#fbbf24;
+font-size:18px;
+letter-spacing:2px;
+}
+
+.review-text{
+color:#374151;
+line-height:1.6;
+font-size:15px;
+}
+
+.review-verified{
+display:inline-flex;
+align-items:center;
+background:#ecfdf5;
+color:#059669;
+font-size:12px;
+padding:6px 10px;
+border-radius:4px;
+}
+
+.sr-results{
+   background-color: #eee !important;
+}
+
+.sr-results-title{
+font-size: clamp(1.6rem, 2.2vw, 2.2rem);
+color:#2f2f2f;
+}
+
+.sr-results-img{
+max-width: 420px;
+}
+
+.sr-result-item{
+font-size: 1rem;
+color:#111827;
+line-height: 1.5;
+}
+
+.sr-result-icon {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    color: #67a7fa;
+    font-size: 40px;
+    min-width: 27px;
+    margin-right: 10px;
+}
+
+
+.medical-content{
+ background-color: #eee !important;
+}
+
+.medical-content-photo-card{
+  border-radius:18px;
+  overflow:hidden;
+  background:#fff;
+}
+
+.medical-content-photo{
+    display: block;
+    width: 100%;
+    height: 680px;
+    object-fit: cover;
+    object-position: top center;
+    border-radius: 20px 20px 20px 20px;
+}
+
+.medical-content-card{
+  background:#fff;
+  border-radius:18px;
+  padding:56px 56px;
+}
+
+.medical-content-kicker{
+      color: #67a7fa;
+    font-family: Montserrat, Sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.medical-content-title{
+    color: #67a7fa;
+    line-height: 1;
+    font-family: Montserrat, Sans-serif;
+    font-size: 30px;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+.medical-content-card p{
+    color: #4D4D4D;
+    line-height: 1.5;
+    font-family: Montserrat, Sans-serif;
+    font-size: 16px;
+}
+
+@media (max-width:575.98px){
+  .medical-content-card{
+    padding:28px 22px;
+  }
+}
+
+.riskfree{
+ background-color: #eee !important;
+  }
+
+  .riskfree-title{
+    letter-spacing: .02em;
+    color: #4D4D4D;
+    line-height: 1.05;
+    font-family: Montserrat, Sans-serif;
+    font-size: 50px;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+
+  .riskfree-card{
+    background:#fff;
+    border-radius: 18px;
+    padding: 34px 28px;
+    box-shadow: 0 18px 40px rgba(0,0,0,.08);
+  }
+
+  .riskfree-card-title{
+    color: #67a7fa;
+    margin-bottom: 8px;
+    font-family: Montserrat, Sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+  }
+
+  .riskfree-card-text{
+    line-height: 1.6;
+    max-width: 340px;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: Montserrat, Sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: #000;
+  }
+
+  .riskfree-link{
+    color:#111827;
+    text-decoration:none;
+    font-weight:600;
+  }
+  .riskfree-link:hover{
+    text-decoration:underline;
+  }
+  
+  
+ .product-cta{
+    background:#fff;
+    border: 1px solid #055cdc;      /* blue border like screenshot */
+    border-radius: 18px;
+    padding: 48px 24px;
+  }
+
+  .product-cta-title{
+    font-weight: 800;
+    text-transform: uppercase;
+    color:#3a3a3a;
+    letter-spacing: .01em;
+    font-size: clamp(1.5rem, 2.6vw, 2.2rem);
+  }
+
+  .product-cta-sub{
+    color:#4b5563;
+    margin: 0 auto;
+    max-width: 720px;
+  }
+
+  .product-cta-img{
+    max-width: 520px;
+  }
+
+  .product-cta-price{
+    font-weight: 700;
+    color:#4D4D4D;
+       font-size: 25px;
+  }
+
+  .product-cta-meta{
+    color:#67a7fa;
+    font-weight: 600;
+    font-size: 16px;
+  }
+
+  .product-cta-meta div{
+    margin-top: 8px;
+  }
+
+  .product-cta-btn{
+	  background: #67a7fa;
+  font-family: Montserrat, Sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #fff;
+    border-radius: 5px 5px 5px 5px;
+    padding: 20px 25px;
+	border:0px;
+  }
+.dotted-border{
+height: 1px;
+    width: 100%;
+    border: 1px dotted #ddd;
+}
+  /* Make it breathe on small screens */
+  @media (max-width: 575.98px){
+    .product-cta{ padding: 34px 16px; }
+    .product-cta-img{ max-width: 100%; }
+  }
+.contact-card h2{
+ font-size: 35px;
+    font-weight: 700;
+    text-transform: capitalize;
+    line-height: 1.2em;
+    letter-spacing: -.05em;
+    color: #4D4D4D 
+}
+  .contact-card{
+  background:#fff;
+  border-radius:20px;
+  padding:60px 30px;
+}
+
+.contact-divider{
+width: 150px;
+    height: 1px;
+    background: #3b82f6;
+    margin-top: 40px;
+}
+
+.contact-icon{
+    font-size: 50px;
+    color: #67a7fa;
+  font-family:"Font Awesome 5 Free";
+  font-weight:900;
+}
+
+.contact-text{
+  margin:0 auto;
+  color:#4D4D4D;
+  line-height:1.6;
+}
+
+.contact-text a{
+  color:#67a7fa;
+  font-weight:600;
+  text-decoration:none;
+}
+
+.contact-text a:hover{
+  text-decoration:underline;
+}
+
+/* Mobile */
+@media(max-width:575px){
+  .contact-card{
+    padding:40px 20px;
+  }
+}
+
+
+ .footer-dark{
+background: #4D4D4D;
+    color: #fff;
+  }
+
+  .footer-logo{
+   
+    max-width:350px
+  }
+
+  .footer-divider{
+    max-width: 1100px;
+    height:1px;
+    background: rgba(255,255,255,.45);
+  }
+
+  .footer-links{
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+    justify-content:center;
+    align-items:center;
+    text-transform:uppercase;
+    font-size:.95rem;
+  }
+
+  .footer-links a{
+    color:#fff;
+    text-decoration:none;
+    font-weight:600;
+  }
+
+  .footer-links a:hover{
+    text-decoration:underline;
+  }
+
+  .footer-sep{
+    opacity:.8;
+  }
+
+  .footer-social{
+    display:flex;
+    justify-content:center;
+    gap:14px;
+  }
+
+  .footer-social a{
+    width:44px;
+    height:44px;
+    border-radius:50%;
+    background:#fff;
+    color:#2f2f2f;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-decoration:none;
+  }
+
+  .footer-social i{
+    font-family:"Font Awesome 5 Free";
+    font-weight:900;
+    font-size:18px;
+  }
+
+  .footer-copy{
+    max-width: 900px;
+    margin: 0 auto;
+    font-size:.95rem;
+  }
+  
+ @media(max-width:767px){ 
+	  .riskfree-title {
+		font-size: 36px;
+	}
+	.review-content {
+		padding-top: 40px;
+		padding-bottom: 40px;
+		    padding-left: 20px;
+    padding-right: 20px;
+	}
+	.navbar .navbar-brand{
+    margin-right: 0 !important;
+	}
+	.navbar-nav{
+		padding: 20px 0px;
+	}
+	.navbar .nav-link {
+    letter-spacing: .02em;
+		color: #67a7fa;
+		font-weight: 600;
+		text-transform: uppercase;
+		font-size: 18px;
+		text-align: center;
+	}
+ }
