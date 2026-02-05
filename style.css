@@ -581,7 +581,8 @@ background: #4D4D4D;
     padding-right: 20px;
 	}
 	.navbar .navbar-brand{
-    margin-right: 0 !important;
+          margin: 0 auto !important;
+        padding-right: 50px;
 	}
 	.navbar-nav{
 		padding: 20px 0px;
