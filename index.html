@@ -4418,6 +4418,10 @@ padding-left: 2.5rem;
 
         .announcement-bar__message {
           font-weight: bold;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          font-size: clamp(10px, 3.2vw, 18px);
         }
 
         @media screen and (max-width: 768px) {
@@ -4497,7 +4501,7 @@ padding-left: 2.5rem;
             </a>
                 <!-- NAVBAR -->
               <nav class="navbar navbar-expand-lg bg-white border-bottom py-3" data-bs-theme="light">
-                <div class="container d-flex align-items-center">
+                <div class="container d-flex align-items-center position-relative">
 
                   <!-- Toggle (left on mobile) -->
                   <button class="navbar-toggler me-2 order-0" type="button"
@@ -5310,13 +5314,34 @@ margin-bottom:10px;
     </style>
 
 <style>
-  
  @media(max-width:767px){ 
 
-	.navbar .navbar-brand{
-    margin: 0 auto!important;
-    padding-right: 50px;
- }
+  .navbar .container {
+    max-width: 84rem;
+    padding-left: 10px;
+    padding-right: 10px;
+    flex-wrap: wrap;
+  }
+
+  .navbar .navbar-toggler {
+    order: 0;
+  }
+
+  .navbar .navbar-brand {
+    order: 1;
+    margin: 0 auto !important;
+    padding-right: 0;
+    position: static;
+    transform: none;
+    flex: 1;
+    text-align: center;
+  }
+
+  .navbar .navbar-collapse {
+    order: 3;
+    flex-basis: 100%;
+  }
+
 	.navbar-nav{
 		padding: 20px 0px;
 	}
@@ -5328,11 +5353,6 @@ margin-bottom:10px;
 		font-size: 18px;
 		text-align: center;
 	}
-  .navbar .container {
-    max-width: 84rem;
-    padding-left: 10px;
-    padding-right: 10px;
-}
  }
 </style>
     <shop-cart-sync data-instance-id="5997d0c4-8538-44a8-8e7a-b3719d0edd91" experiments="{}">
