@@ -1,0 +1,40 @@
+/* Mobile Responsiveness Fixes */
+@media screen and (max-width: 767px) {
+    .main_cnt_inner {
+        display: block !important;
+    }
+    .main_cnt_left {
+        width: 100% !important;
+        float: none !important;
+    }
+    .main_cnt_right.mobile-none {
+        display: none !important;
+    }
+    .main_cnt_right.desktop-none {
+        display: block !important;
+        width: 100% !important;
+        float: none !important;
+        margin-top: 20px;
+    }
+    .mcl_title h2 {
+        font-size: 26px !important;
+        line-height: 36px !important;
+    }
+    .scraped-container {
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+    }
+}
+
+/* Ensure images and videos are responsive */
+img, video {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Fix for the sticky sidebar if it causes issues on mobile */
+@media screen and (max-width: 767px) {
+    .main_cnt_right {
+        position: static !important;
+    }
+}
