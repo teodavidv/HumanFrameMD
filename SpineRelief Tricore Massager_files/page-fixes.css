@@ -1,29 +1,9 @@
-/* Mobile Responsiveness Fixes */
-@media screen and (max-width: 767px) {
-    .main_cnt_inner {
-        display: block !important;
-    }
-    .main_cnt_left {
-        width: 100% !important;
-        float: none !important;
-    }
-    .main_cnt_right.mobile-none {
-        display: none !important;
-    }
-    .main_cnt_right.desktop-none {
-        display: block !important;
-        width: 100% !important;
-        float: none !important;
-        margin-top: 20px;
-    }
-    .mcl_title h2 {
-        font-size: 26px !important;
-        line-height: 36px !important;
-    }
-    .scraped-container {
-        padding-left: 15px !important;
-        padding-right: 15px !important;
-    }
+/* Ensure sidebar is hidden to match reference page */
+.main_cnt_right {
+    display: none !important;
+    position: sticky !important;
+    top: 0px !important;
+    z-index: 10 !important;
 }
 
 /* Ensure images and videos are responsive */
@@ -32,9 +12,24 @@ img, video {
     height: auto;
 }
 
-/* Fix for the sticky sidebar if it causes issues on mobile */
+/* Mobile Responsiveness Fixes */
 @media screen and (max-width: 767px) {
-    .main_cnt_right {
-        position: static !important;
+    .main_cnt_inner {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        flex-direction: row !important;
+        gap: 17px !important;
+    }
+    .main_cnt_left {
+        width: 100% !important;
+        float: none !important;
+    }
+    .mcl_title h2 {
+        font-size: 26px !important;
+        line-height: 36px !important;
+    }
+    .scraped-container {
+        padding-left: 15px !important;
+        padding-right: 15px !important;
     }
 }
