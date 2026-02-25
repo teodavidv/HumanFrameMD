@@ -1,0 +1,248 @@
+/* Besyner Reading Glasses - Fixes and Enhancements */
+
+/* Ensure proper viewport and responsive behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: PINGFANG-MEDIUM, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #2a2320;
+  background-color: #ffffff;
+}
+
+/* Fix image responsiveness */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Ensure proper container widths */
+.smb-header-main,
+.edition-heart,
+.comment-container-reviews,
+.smb.scraped-container3,
+.smb.scraped-container4 {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+/* Fix button styling */
+.smb-button,
+.smb-header-btn {
+  display: inline-block;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 30px;
+}
+
+.smb-button:hover,
+.smb-header-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Mobile Responsive Design */
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+
+  .smb-header-main {
+    flex-direction: column;
+    padding: 10px 10px;
+    gap: 10px;
+  }
+
+  .smb-header-main-left,
+  .smb-header-main-right {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .smb-header-text {
+    border-left: none;
+    border-top: 1px solid #000;
+    margin: 10px 0 0 0;
+    padding: 10px 0 0 0;
+    max-width: 100%;
+  }
+
+  .smb-header-main-right-text {
+    border-right: none;
+    padding: 0;
+  }
+
+  .smb.scraped-container4-explanation {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .smb.scraped-container4-explanation li {
+    max-width: 100%;
+    flex-basis: auto;
+  }
+
+  .comment-reviews-boxs {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .comment-reviews-box {
+    width: 100%;
+  }
+
+  .smb-product-introduction li {
+    width: 100%;
+    height: auto;
+    margin: 10px 0;
+    padding: 30px 20px;
+  }
+
+  .smb-mb-show {
+    display: block !important;
+  }
+
+  .smb-pc-show {
+    display: none !important;
+  }
+
+  .smb-mb-block {
+    display: none !important;
+  }
+
+  .smb-button-bottom {
+    display: block !important;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    font-size: 13px;
+  }
+
+  .smb-header-main {
+    padding: 8px 5px;
+  }
+
+  .smb-header-img {
+    height: 40px;
+  }
+
+  .smb-button-text {
+    padding: 12px 20px;
+    font-size: 14px;
+  }
+
+  .smb.scraped-container3-title {
+    font-size: 24px;
+    padding: 30px 15px;
+  }
+
+  .smb.scraped-container4-title {
+    font-size: 24px;
+  }
+
+  .smb-product-introduction li {
+    width: 100%;
+    height: auto;
+    padding: 20px 15px;
+  }
+
+  .smb-product-introduction li img {
+    max-width: 50px;
+    margin-bottom: 15px;
+  }
+
+  .smb-product-introduction li span {
+    font-size: 16px;
+  }
+}
+
+/* Accessibility improvements */
+a:focus,
+button:focus,
+input:focus,
+textarea:focus,
+select:focus {
+  outline: 2px solid #317a5b;
+  outline-offset: 2px;
+}
+
+/* Smooth transitions for interactive elements */
+.smb-button,
+.smb-header-btn,
+a,
+button {
+  transition: all 0.3s ease;
+}
+
+/* Fix for sticky header on scroll */
+.smb-header-fixed.smb-fixed {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Ensure proper spacing in sections */
+.smb.scraped-container1-text,
+.smb.scraped-container3,
+.smb.scraped-container4,
+.smb.scraped-container6 {
+  margin: 0;
+  padding: 40px 20px;
+}
+
+/* Fix for review boxes on all screen sizes */
+.reviews-box-item {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.reviews-box-item p {
+  flex-grow: 1;
+}
+
+/* Ensure proper link styling */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Fix for details/summary (FAQ) elements */
+details {
+  margin: 15px 0;
+}
+
+summary {
+  cursor: pointer;
+  font-weight: 600;
+  padding: 10px 0;
+  user-select: none;
+}
+
+summary:hover {
+  color: #317a5b;
+}
+
+details[open] summary {
+  color: #317a5b;
+}
+
+details > *:not(summary) {
+  margin-top: 10px;
+  padding-left: 20px;
+}
