@@ -1,0 +1,208 @@
+/* Consolidated page fixes for offline parity and responsive behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+video {
+  display: block;
+}
+
+.product-image-slider video,
+.feature-image-wrapper video,
+.secSteps video {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+#slider90Days img {
+  display: block;
+  max-width: 88px;
+  height: auto;
+}
+
+.navbar-collapse.show {
+  display: block;
+}
+
+.navbar-toggler {
+  border: 0;
+  box-shadow: none !important;
+}
+
+.navbar-toggler:focus {
+  box-shadow: none !important;
+}
+
+.secStepMobileSlider {
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.secStepMobileSliderPage {
+  scroll-snap-align: start;
+}
+
+.secStepMobileSliderIndicators .secStepMobileSliderIndicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #d2d2d2;
+}
+
+.secStepMobileSliderIndicators .secStepMobileSliderIndicator.active {
+  background: #000;
+}
+
+.mobCtaBtn.is-visible {
+  display: block !important;
+}
+
+@media (max-width: 991.98px) {
+  .navbar > .container {
+    align-items: center;
+  }
+
+  .navbar-collapse {
+    margin-top: 12px;
+    padding: 12px 0 4px;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+  }
+
+  .navbar-nav .nav-link {
+    display: block;
+    padding: 10px 0;
+  }
+
+  .sec3Cnt7.text-end.d-md-block.d-none {
+    display: none !important;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .bannerContainer .timer-bar {
+    gap: 6px;
+    padding: 9px 10px;
+    font-size: 14px;
+    line-height: 18px;
+  }
+
+  .bannerContainer .timer-bar .hl-text {
+    padding: 4px 8px;
+    border-radius: 8px;
+  }
+
+  .bannerMain .container,
+  .sec3 .container,
+  .sec5 .container,
+  .sec4 .container,
+  .sec9 .container,
+  footer .container-fluid {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .product-image-slider {
+    margin-bottom: 14px;
+  }
+
+  #slider90Days {
+    padding: 12px !important;
+  }
+
+  #slider90Days img {
+    max-width: 72px;
+  }
+
+  .thumbnail-slider .splide__slide {
+    width: 56px !important;
+    margin-right: 8px !important;
+  }
+
+  .right-content {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  .right-content .subText,
+  .bnrAr .subText {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .feature-list ul {
+    padding-left: 22px;
+  }
+
+  .main-review {
+    gap: 12px;
+  }
+
+  .main-review .profile-image {
+    width: 56px;
+    height: 56px;
+    object-fit: cover;
+  }
+
+  .shipArs {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px;
+  }
+
+  .shipArs .btn-text1 {
+    width: 100%;
+    text-align: center;
+  }
+
+  .shipArs img {
+    height: 16px;
+    width: auto;
+  }
+
+  .community-section .col-12.text-center.pb-2.px-5 {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  .sec5 .table {
+    font-size: 14px;
+  }
+
+  .ninetyDays {
+    padding: 18px 16px;
+  }
+
+  .sec4 h1[style*='70px'] {
+    font-size: 56px !important;
+    line-height: 1;
+  }
+
+  .review-section .table td {
+    vertical-align: middle;
+  }
+
+  .accordion-button {
+    font-size: 16px;
+    line-height: 22px;
+  }
+
+  .mobCtaBtn {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1040;
+    background: #fff;
+    padding: 10px 14px calc(10px + env(safe-area-inset-bottom));
+    box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.12);
+  }
+
+  body.has-mobile-cta {
+    padding-bottom: 118px;
+  }
+}
