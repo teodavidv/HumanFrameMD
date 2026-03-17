@@ -90,12 +90,9 @@
 
     orderButtons.forEach(function (button) {
       if (button.tagName === 'A') {
-        button.setAttribute('href', '#faq-section');
+        button.setAttribute('href', 'https://checkout.humanframemd.com');
+        button.setAttribute('target', '_self');
       }
-      button.addEventListener('click', function (event) {
-        event.preventDefault();
-        smoothScrollTo(faqSection || document.body);
-      });
     });
 
     function getViewportWidth() {
