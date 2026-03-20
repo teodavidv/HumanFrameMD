@@ -12,6 +12,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <script>
 (function() {
   var eventLog = {};
+  var eventCount = {};
   
   window.dataLayer = window.dataLayer || [];
   var originalPush = window.dataLayer.push;
@@ -22,15 +23,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     
     if (event && event.event) {
       var eventKey = event.event + '_' + (event.content_name || '');
-      var now = Date.now();
       
-      // Allow same event only once per 100ms (prevents duplicate renders)
-      if (eventLog[eventKey] && (now - eventLog[eventKey]) < 100) {
-        console.log('[GTM Dedup] Blocked duplicate event:', event.event);
+      // Block duplicate events - only allow the first occurrence
+      if (eventCount[eventKey]) {
+        console.log('[GTM Dedup] Blocked duplicate event:', event.event, '(occurrence #' + (eventCount[eventKey] + 1) + ')');
         return;
       }
       
-      eventLog[eventKey] = now;
+      eventCount[eventKey] = (eventCount[eventKey] || 0) + 1;
+      eventLog[eventKey] = Date.now();
     }
     
     return originalPush.apply(this, args);
