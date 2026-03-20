@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 
 <html data-tag-assistant-prod-present="" data-tag-assistant-present=""><head><script>
-// Prevent duplicate GTM events on this page
-window.gtmEventsFired = window.gtmEventsFired || {};
+window.gtmEventsFired = sessionStorage.getItem('gtmPageEvents') === 'true';
+if (!window.gtmEventsFired) {
+  sessionStorage.setItem('gtmPageEvents', 'true');
+}
 window.dataLayer = window.dataLayer || [];
-var originalDataLayerPush = window.dataLayer.push;
+var originalPush = window.dataLayer.push;
 window.dataLayer.push = function(obj) {
-  if (obj && obj.event) {
-    var eventKey = obj.event + JSON.stringify(obj);
-    if (!window.gtmEventsFired[eventKey]) {
-      window.gtmEventsFired[eventKey] = true;
-      return originalDataLayerPush.call(this, obj);
+  if (obj && (obj.event === 'PageView' || obj.event === 'page_view' || obj.event === 'ViewContent' || obj.event === 'view_content')) {
+    if (window.gtmEventsFired) {
+      return;
     }
-    return;
+    window.gtmEventsFired = true;
   }
-  return originalDataLayerPush.call(this, obj);
+  return originalPush.call(this, obj);
 };
 </script>
 <!-- Google Tag Manager -->
