@@ -12,33 +12,23 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <script src="./spinerelief2/param-forwarder.js"></script>
 <!-- End URL Parameter Forwarder -->
 
-<!-- Event Deduplication for SpineRelief2 -->
+<!-- Next.js Route Change Event Deduplication -->
 <script>
-window._viewContentFired = false;
 (function() {
-  window.dataLayer = window.dataLayer || [];
-  var originalPush = window.dataLayer.push;
-  window._firedEvents = window._firedEvents || {};
+  var lastPageViewTime = 0;
+  var pageViewDebounceMs = 500;
+  var originalPush = (window.dataLayer = window.dataLayer || []).push;
   
-  window.dataLayer.push = function() {
-    var args = Array.prototype.slice.call(arguments);
-    var event = args[0];
-    
-    if (event && typeof event === 'object') {
-      // Create a unique key for this event
-      var eventKey = JSON.stringify(event);
-      
-      // Check if we've already fired this exact event
-      if (window._firedEvents[eventKey]) {
-        console.log('[GTM Dedup] BLOCKED duplicate event:', event.event || 'unknown');
+  window.dataLayer.push = function(obj) {
+    if (obj && (obj.event === 'pageview' || obj.event === 'page_view')) {
+      var now = Date.now();
+      if (now - lastPageViewTime < pageViewDebounceMs) {
+        console.log('[GTM Dedup] Blocked duplicate pageview');
         return false;
       }
-      
-      // Mark this event as fired
-      window._firedEvents[eventKey] = true;
+      lastPageViewTime = now;
     }
-    
-    return originalPush.apply(this, args);
+    return originalPush.apply(this, arguments);
   };
 })();
 </script>
