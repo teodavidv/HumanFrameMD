@@ -1,13 +1,47 @@
 <!DOCTYPE html>
 
 <html data-tag-assistant-prod-present="" data-tag-assistant-present=""><head><script>
-// Strip GA parameters from URL to prevent duplicate event firing
-if (window.history && window.history.replaceState) {
-  var url = window.location.href;
-  if (url.includes('?_gl=') || url.includes('?_ga')) {
-    var cleanUrl = url.split('?')[0];
-    window.history.replaceState({}, document.title, cleanUrl);
+// Prevent GTM from firing events multiple times on this page
+window.__gtmEventsFired = {};
+window.__gtmEventDedup = true;
+
+// Intercept dataLayer.push before GTM loads
+window.dataLayer = window.dataLayer || [];
+var originalPush = window.dataLayer.push;
+
+window.dataLayer.push = function(obj) {
+  if (obj && obj.event && window.__gtmEventDedup) {
+    var eventKey = obj.event;
+    
+    // Block duplicate PageView and ViewContent events
+    if ((eventKey === 'PageView' || eventKey === 'ViewContent' || eventKey === 'view_content') && window.__gtmEventsFired[eventKey]) {
+      console.log('GTM dedup: Blocked duplicate ' + eventKey + ' event');
+      return;
+    }
+    
+    // Mark this event as fired
+    if (eventKey === 'PageView' || eventKey === 'ViewContent' || eventKey === 'view_content') {
+      window.__gtmEventsFired[eventKey] = true;
+    }
   }
+  
+  return originalPush.apply(this, arguments);
+};
+
+// Also intercept gtag if it exists
+if (window.gtag) {
+  var originalGtag = window.gtag;
+  window.gtag = function() {
+    var args = Array.from(arguments);
+    if (args[0] === 'event' && (args[1] === 'PageView' || args[1] === 'ViewContent' || args[1] === 'view_content')) {
+      if (window.__gtmEventsFired[args[1]]) {
+        console.log('GTM dedup: Blocked duplicate gtag ' + args[1] + ' event');
+        return;
+      }
+      window.__gtmEventsFired[args[1]] = true;
+    }
+    return originalGtag.apply(this, arguments);
+  };
 }
 </script>
 <!-- Google Tag Manager -->
