@@ -14,17 +14,24 @@ window._viewContentFired = false;
 (function() {
   window.dataLayer = window.dataLayer || [];
   var originalPush = window.dataLayer.push;
+  window._firedEvents = window._firedEvents || {};
   
   window.dataLayer.push = function() {
     var args = Array.prototype.slice.call(arguments);
     var event = args[0];
     
-    if (event && (event.event === 'view_content' || event.event === 'ViewContent')) {
-      if (window._viewContentFired) {
-        console.log('[GTM Dedup] BLOCKED duplicate View content event');
+    if (event && typeof event === 'object') {
+      // Create a unique key for this event
+      var eventKey = JSON.stringify(event);
+      
+      // Check if we've already fired this exact event
+      if (window._firedEvents[eventKey]) {
+        console.log('[GTM Dedup] BLOCKED duplicate event:', event.event || 'unknown');
         return false;
       }
-      window._viewContentFired = true;
+      
+      // Mark this event as fired
+      window._firedEvents[eventKey] = true;
     }
     
     return originalPush.apply(this, args);
