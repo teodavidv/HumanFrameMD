@@ -1,6 +1,23 @@
 <!DOCTYPE html>
 
-<html data-tag-assistant-prod-present="" data-tag-assistant-present=""><head><!-- Google Tag Manager -->
+<html data-tag-assistant-prod-present="" data-tag-assistant-present=""><head><script>
+// Prevent duplicate GTM events on this page
+window.gtmEventsFired = window.gtmEventsFired || {};
+window.dataLayer = window.dataLayer || [];
+var originalDataLayerPush = window.dataLayer.push;
+window.dataLayer.push = function(obj) {
+  if (obj && obj.event) {
+    var eventKey = obj.event + JSON.stringify(obj);
+    if (!window.gtmEventsFired[eventKey]) {
+      window.gtmEventsFired[eventKey] = true;
+      return originalDataLayerPush.call(this, obj);
+    }
+    return;
+  }
+  return originalDataLayerPush.call(this, obj);
+};
+</script>
+<!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
