@@ -11,8 +11,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Event Deduplication for SpineRelief2 -->
 <script>
 (function() {
-  var eventLog = {};
-  var eventCount = {};
+  window._firedEvents = window._firedEvents || {};
   
   window.dataLayer = window.dataLayer || [];
   var originalPush = window.dataLayer.push;
@@ -22,16 +21,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     var event = args[0];
     
     if (event && event.event) {
-      var eventKey = event.event + '_' + (event.content_name || '');
+      var eventKey = event.event;
       
-      // Block duplicate events - only allow the first occurrence
-      if (eventCount[eventKey]) {
-        console.log('[GTM Dedup] Blocked duplicate event:', event.event, '(occurrence #' + (eventCount[eventKey] + 1) + ')');
-        return;
+      if (eventKey === 'view_content' || eventKey === 'ViewContent') {
+        if (window._firedEvents['view_content_blocked']) {
+          console.log('[GTM Dedup] Blocked duplicate View content event');
+          return false;
+        }
+        window._firedEvents['view_content_blocked'] = true;
+      } else {
+        var uniqueKey = eventKey + '_' + (event.content_name || '');
+        if (window._firedEvents[uniqueKey]) {
+          console.log('[GTM Dedup] Blocked duplicate event:', eventKey);
+          return false;
+        }
+        window._firedEvents[uniqueKey] = true;
       }
-      
-      eventCount[eventKey] = (eventCount[eventKey] || 0) + 1;
-      eventLog[eventKey] = Date.now();
     }
     
     return originalPush.apply(this, args);
