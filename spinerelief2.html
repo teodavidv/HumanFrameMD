@@ -1,6 +1,30 @@
 <!DOCTYPE html>
 
-<html data-tag-assistant-prod-present="" data-tag-assistant-present=""><head><!-- Google Tag Manager -->
+<html data-tag-assistant-prod-present="" data-tag-assistant-present=""><head><script>
+// Aggressive GTM Deduplication - Block all duplicate events
+(function() {
+  var eventLog = {};
+  var pageLoadTime = Date.now();
+  window.dataLayer = window.dataLayer || [];
+  var originalPush = window.dataLayer.push;
+  window.dataLayer.push = function(obj) {
+    if (!obj || typeof obj !== "object" || !obj.event) {
+      return originalPush.apply(this, arguments);
+    }
+    var eventName = obj.event;
+    var now = Date.now();
+    var timeSinceLoad = now - pageLoadTime;
+    var sig = eventName + ":" + (obj.content_name || "") + ":" + (obj.content_type || "");
+    if (eventLog[sig]) {
+      console.log("[GTM Dedup] Blocked duplicate:", eventName);
+      return false;
+    }
+    eventLog[sig] = { time: timeSinceLoad, data: obj };
+    return originalPush.apply(this, arguments);
+  };
+})();
+</script>
+<!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
