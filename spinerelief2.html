@@ -12,21 +12,42 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <script src="./spinerelief2/param-forwarder.js"></script>
 <!-- End URL Parameter Forwarder -->
 
-<!-- Next.js Route Change Event Deduplication -->
+<!-- Next.js Router Event Interceptor -->
 <script>
 (function() {
-  var lastPageViewTime = 0;
-  var pageViewDebounceMs = 500;
+  var routerEventFired = false;
+  var lastRouteTime = 0;
+  
+  // Intercept Next.js router events
+  if (typeof window !== 'undefined' && window.next) {
+    var originalRouter = window.next.router;
+    if (originalRouter) {
+      originalRouter.events.off('routeChangeComplete');
+      originalRouter.events.on('routeChangeComplete', function() {
+        var now = Date.now();
+        if (now - lastRouteTime > 1000) { // Only fire once per second
+          lastRouteTime = now;
+          routerEventFired = true;
+        }
+      });
+    }
+  }
+  
+  // Block duplicate dataLayer pushes
   var originalPush = (window.dataLayer = window.dataLayer || []).push;
+  var firedEvents = {};
   
   window.dataLayer.push = function(obj) {
-    if (obj && (obj.event === 'pageview' || obj.event === 'page_view')) {
-      var now = Date.now();
-      if (now - lastPageViewTime < pageViewDebounceMs) {
-        console.log('[GTM Dedup] Blocked duplicate pageview');
+    if (obj && typeof obj === 'object') {
+      // Create event signature
+      var sig = (obj.event || '') + ':' + (obj.value || '');
+      
+      // Block if same event fired in last 1 second
+      if (firedEvents[sig] && Date.now() - firedEvents[sig] < 1000) {
+        console.log('[GTM] Blocked duplicate:', sig);
         return false;
       }
-      lastPageViewTime = now;
+      firedEvents[sig] = Date.now();
     }
     return originalPush.apply(this, arguments);
   };
